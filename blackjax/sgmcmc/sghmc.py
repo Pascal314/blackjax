@@ -22,7 +22,7 @@ def sample_momentum(rng_key: PRNGKey, position: PyTree, step_size: float):
 def kernel(
     grad_estimator_fn: Callable, alpha: float = 0.01, beta: float = 0
 ) -> Callable:
-    integrator = sghmc(grad_estimator_fn)
+    integrator = sghmc(grad_estimator_fn, alpha=alpha, beta=beta)
 
     def one_step(
         rng_key: PRNGKey, state: SGLDState, data_batch: PyTree, step_size: float, L: int
